@@ -2,12 +2,15 @@ package main
 
 import (
 	"fmt"
-	. "github.com/actuallyconnor/toggle/domain"
+	"log"
+	"net/http"
 )
 
+func handler(w http.ResponseWriter, r *http.Request) {
+	fmt.Fprintf(w, "Hi there, I love %s!", r.URL.Path[1:])
+}
+
 func main() {
-	p1 := &Page{Title: "TestPage", Body: []byte("This is a sample Page.")}
-	p1.Save()
-	p2, _ := LoadPage("TestPage")
-	fmt.Println(string(p2.Body))
+	http.HandleFunc("/", handler)
+	log.Fatal(http.ListenAndServe(":8080", nil))
 }
