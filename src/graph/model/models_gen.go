@@ -17,6 +17,12 @@ type BoardEdges struct {
 	Node   *Board `json:"node"`
 }
 
+type CreateIssueInput struct {
+	UserID      string  `json:"userId"`
+	Name        string  `json:"name"`
+	Description *string `json:"description,omitempty"`
+}
+
 type Issue struct {
 	ID          string  `json:"id"`
 	Name        string  `json:"name"`
@@ -30,6 +36,9 @@ type IssueConnection struct {
 type IssueEdges struct {
 	Cursor string `json:"cursor"`
 	Node   *Issue `json:"node"`
+}
+
+type Mutation struct {
 }
 
 type Query struct {

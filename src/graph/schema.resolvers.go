@@ -11,12 +11,21 @@ import (
 	"github.com/actuallyconnor/taskly/graph/model"
 )
 
+// CreateIssue is the resolver for the createIssue field.
+func (r *mutationResolver) CreateIssue(ctx context.Context, input model.CreateIssueInput) (*model.Issue, error) {
+	panic(fmt.Errorf("not implemented: CreateIssue - createIssue"))
+}
+
 // User is the resolver for the user field.
 func (r *queryResolver) User(ctx context.Context) (*model.User, error) {
 	panic(fmt.Errorf("not implemented: User - user"))
 }
 
+// Mutation returns MutationResolver implementation.
+func (r *Resolver) Mutation() MutationResolver { return &mutationResolver{r} }
+
 // Query returns QueryResolver implementation.
 func (r *Resolver) Query() QueryResolver { return &queryResolver{r} }
 
+type mutationResolver struct{ *Resolver }
 type queryResolver struct{ *Resolver }
