@@ -2,18 +2,43 @@
 
 package model
 
-type Mutation struct {
+type Board struct {
+	ID     string           `json:"id"`
+	Issues *IssueConnection `json:"issues"`
+	Issue  *Issue           `json:"issue"`
 }
 
-type NewTodo struct {
-	Text   string `json:"text"`
-	UserID string `json:"userId"`
+type BoardConnection struct {
+	Edges []*BoardEdges `json:"edges"`
+}
+
+type BoardEdges struct {
+	Cursor string `json:"cursor"`
+	Node   *Board `json:"node"`
+}
+
+type Issue struct {
+	ID          string  `json:"id"`
+	Name        string  `json:"name"`
+	Description *string `json:"description,omitempty"`
+}
+
+type IssueConnection struct {
+	Edges []*IssueEdges `json:"edges"`
+}
+
+type IssueEdges struct {
+	Cursor string `json:"cursor"`
+	Node   *Issue `json:"node"`
 }
 
 type Query struct {
 }
 
 type User struct {
-	ID   string `json:"id"`
-	Name string `json:"name"`
+	ID     string           `json:"id"`
+	Name   string           `json:"name"`
+	Email  string           `json:"email"`
+	Boards *BoardConnection `json:"boards"`
+	Board  *Board           `json:"board"`
 }
