@@ -3,10 +3,13 @@ FROM golang:1-alpine3.20@sha256:aff1a3076b85ca725ab3075f8fe96fa6d39b1aa77ec8a312
 WORKDIR /srv
 
 # pre-copy/cache go.mod for pre-downloading dependencies and only redownloading them in subsequent builds if they change
-COPY src/go.mod src/go.sum ./src/
+COPY src/go.mod src/go.sum /srv/src/
 WORKDIR /srv/src
 RUN go mod download && go mod verify
 
 WORKDIR /srv
 COPY . .
 WORKDIR /srv/src
+# RUN CGO_ENABLED=0 go build -o server server.go
+EXPOSE 8080
+CMD ["./server"]

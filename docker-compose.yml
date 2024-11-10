@@ -1,15 +1,21 @@
 services:
   golang:
     image: taskly:golang
+    build:
+      dockerfile: docker/golang/Dockerfile
+      context: .
+      target: production
     ports:
       - '9000:8080'
     volumes:
       - .:/srv
-    command:
-      - go run server.go
 
   postgres:
     image: taskly:postgres
+    build:
+      dockerfile: docker/postgres/Dockerfile
+      context: .
+      target: production
     expose:
       - 5432
     ports:
