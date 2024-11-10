@@ -12,3 +12,7 @@ DOCKER_COMPOSE:=docker compose \
 dev-build:
 	@docker build --pull -t $(GO_IMG) -f docker/golang/Dockerfile .
 	@docker build --pull -t $(PSQL_IMG) -f docker/postgres/Dockerfile .
+
+.PHONY: dev-up
+dev-up:
+	@$(DOCKER_COMPOSE) up --remove-orphans

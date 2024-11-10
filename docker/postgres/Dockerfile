@@ -1,1 +1,1 @@
-FROM postgres:17.0-alpine3.20@sha256:7991c58c4cff9a417e83e09a6b069b04b5e215c9a66518c979ca5db7367a9a60 AS production
+FROM postgres:17.0 AS production

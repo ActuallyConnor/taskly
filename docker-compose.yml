@@ -6,7 +6,7 @@ services:
       context: .
       target: production
     ports:
-      - '9000:8080'
+      - '8080:8080'
     volumes:
       - .:/srv
 
@@ -24,5 +24,5 @@ services:
       POSTGRES_USER: postgres
       POSTGRES_DB: taskly
       POSTGRES_PASSWORD: postgres
-    volumes:
-      - ./docker/postgres:/var/lib/postgresql/data
+#    volumes:
+#      - ./docker/postgres:/var/lib/postgresql/data
